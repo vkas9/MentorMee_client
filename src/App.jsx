@@ -19,7 +19,7 @@ function App() {
             },
           }}
         />
-      <div className="h-screen bg-[#040c45] text-white overflow-y-auto ">
+      <div className="h-screen fixed top-0 left-0 w-screen bg-gradient-to-br  from-[#040c45] to-black text-white overflow-y-auto ">
         <Router>
           <Navbar />
 

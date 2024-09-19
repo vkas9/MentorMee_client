@@ -5,7 +5,8 @@ const Login = () => {
 
     const [loading,setLoading]=useState(false);
     const handleSubmit = async (data) => {
-        // console.log("data->",data)
+
+        console.log("data->",data)
         // if (data.Password !== data.ConfirmPassword) {
         //   toast.error("Passwords do not match");
         //   return;
@@ -30,14 +31,13 @@ const Login = () => {
         
       });
   return (
-    <div className="flex relative min-h-[calc(100vh-(61px))] items-center">
+    <div className="flex  relative min-h-[calc(100vh-(69px))] items-center ">
          <Formik
         initialValues={{
-          FirstName: "",
-          LastName: "",
+         
           Email: "",
           Password: "",
-          ConfirmPassword: "",
+          
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -45,8 +45,8 @@ const Login = () => {
         <Form  className="absolute top-[15%] ">
           
           <div className="w-screen xs:w-full p-6 flex sm:items-center  justify-center flex-col gap-2 xs:gap-5">
-          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
-        Create  Account
+          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-br from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
+       Login
       </h1>
               
         

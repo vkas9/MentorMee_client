@@ -9,7 +9,7 @@ const Navbar = () => {
     const current=location.pathname.split('/')[1]
   return (
     <div className='text-xl font-bold '>
-        <div className='flex items-center p-2   justify-between '>
+        <div className='flex items-center p-3   justify-between '>
 
         
         <Link to="/" className='font-bold'>MentorMee</Link>
