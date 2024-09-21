@@ -1,28 +1,30 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import React, { useState } from 'react'
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { login } from "../../APIs/api";
 const Login = () => {
 
     const [loading,setLoading]=useState(false);
+
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
     const handleSubmit = async (data) => {
 
-        console.log("data->",data)
-        // if (data.Password !== data.ConfirmPassword) {
-        //   toast.error("Passwords do not match");
-        //   return;
-        // }
+       
     
-        // setLoading(true);
-        // try {
-        //   await dispatch(opt(data, navigate));
-        //   setLoading(false);
-        // } catch (error) {
-        //   console.error("Signup failed:", error);
+        setLoading(true);
+        try {
+          await dispatch(login(data, navigate));
+          setLoading(false);
+        } catch (error) {
+          console.error("Login failed:", error);
     
-        //   toast.error("Signup failed. Please try again.");
-        // } finally {
-        //   setLoading(false);
-        // }
+          toast.error("Login failed. Please try again.");
+        } finally {
+          setLoading(false);
+        }
       };
       const validationSchema = Yup.object().shape({
         
@@ -79,7 +81,16 @@ const Login = () => {
                 />
               </div>
              
-            </div>
+            
+            <div className="block -mt-1  font-semibold text-end">
+            <Link
+              to={"/reset-password"}
+              className=" text-white/50 hover:text-white"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+          </div>
             <button
               disabled={loading}
               type="submit"

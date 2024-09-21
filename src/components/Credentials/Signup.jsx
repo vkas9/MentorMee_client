@@ -1,27 +1,32 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import React, { useState } from 'react'
 import * as Yup from "yup";
+import { checkOTP } from "../../APIs/api";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
 
     const [loading,setLoading]=useState(false);
+   const dispatch= useDispatch();
+  const navigate= useNavigate()
     const handleSubmit = async (data) => {
-        // console.log("data->",data)
-        // if (data.Password !== data.ConfirmPassword) {
-        //   toast.error("Passwords do not match");
-        //   return;
-        // }
+       
+        if (data.Password !== data.ConfirmPassword) {
+          toast.error("Passwords do not match");
+          return;
+        }
     
-        // setLoading(true);
-        // try {
-        //   await dispatch(opt(data, navigate));
-        //   setLoading(false);
-        // } catch (error) {
-        //   console.error("Signup failed:", error);
+        setLoading(true);
+        try {
+          await dispatch(checkOTP(data, navigate));
+          
+        } catch (error) {
+          console.error("Signup failed:", error);
     
-        //   toast.error("Signup failed. Please try again.");
-        // } finally {
-        //   setLoading(false);
-        // }
+          toast.error("Signup failed. Please try again.");
+        } finally {
+          setLoading(false);
+        }
       };
       const validationSchema = Yup.object().shape({
         FirstName: Yup.string().required("First Name is required"),
@@ -49,7 +54,7 @@ const Signup = () => {
           
           <div className="w-screen xs:w-full p-6 flex sm:items-center  justify-center flex-col gap-2 xs:gap-5">
           <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
-        Create  Account
+        Create an Account
       </h1>
               <div>
                 <Field

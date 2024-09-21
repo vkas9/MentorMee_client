@@ -5,6 +5,10 @@ import HeroSection from "./components/Hero/HeroSection";
 import Signup from "./components/Credentials/Signup";
 import Login from "./components/Credentials/Login";
 import { Toaster } from "react-hot-toast";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import VerifyEmail from "./components/ForgotPassword/VerifyEmail";
+import ResetPassword from "./components/ForgotPassword/ResetPassword";
+import SocialHub from "./components/SocialMediaPage/SocialHub";
 
 function App() {
   return (
@@ -19,7 +23,7 @@ function App() {
             },
           }}
         />
-      <div className="h-screen fixed top-0 left-0 w-screen bg-gradient-to-br  from-[#040c45] to-black text-white overflow-y-auto ">
+      <div className="h-screen fixed top-0 left-0 w-screen bg-gradient-to-br  from-[#040c45] to-black text-white  ">
         <Router>
           <Navbar />
 
@@ -35,21 +39,58 @@ function App() {
             <Route
               path="/login"
               element={
-                // <OpenRoute>
+                <OpenRoute>
                   <Login/>
-                // </OpenRoute>
+                 </OpenRoute>
               }
             />
 
             <Route
               path="/signup"
               element={
-                // <OpenRoute>
+                <OpenRoute>
                   <Signup/>
-                // </OpenRoute>
+                 </OpenRoute>
               }
             />
-            
+            <Route
+              path="/reset-password"
+              element={
+                <OpenRoute>
+                  <ForgotPassword />
+                </OpenRoute>
+              }
+            />
+            <Route
+              path="reset-password/verify-email"
+              element={
+                <OpenRoute>
+                  <VerifyEmail />
+                </OpenRoute>
+              }
+            />
+            <Route
+              path="reset-password/reset-password"
+              element={
+                <OpenRoute>
+                  <ResetPassword />
+                </OpenRoute>
+              }
+            />
+            <Route
+              path="social-hub"
+              element={
+                <SocialHub/>
+              }
+            />
+            <Route
+              path="signup/verify-email"
+              element={
+                <OpenRoute>
+                  <VerifyEmail />
+                </OpenRoute>
+              }
+            />
           </Routes>
         </Router>
       </div>
