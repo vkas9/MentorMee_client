@@ -6,7 +6,6 @@ export const fetchAllPost = async (dispatch, signal) => {
   try {
     const allPosts = await getPostList(signal);
     
-    
     if (!signal.aborted) {
       dispatch(postAction.setAllPost(allPosts?.data?.allPost || []));
     }

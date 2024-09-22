@@ -47,8 +47,8 @@ const Login = () => {
         <Form  className="absolute top-[15%] ">
           
           <div className="w-screen xs:w-full p-6 flex sm:items-center  justify-center flex-col gap-2 xs:gap-5">
-          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-br from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
-       Login
+          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
+       Log in to MentorMee
       </h1>
               
         

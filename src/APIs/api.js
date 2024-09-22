@@ -272,7 +272,7 @@ export const forgotPassword = async (data, navigate) => {
       toast.error("No internet connection");
       throw new Error("No internet connection");
     }
-    let response;
+   
   
     try {
       const res = await axios.get(
@@ -282,7 +282,9 @@ export const forgotPassword = async (data, navigate) => {
           signal: signal,
         }
       );
-      response = res;
+     
+      return res;
+      
     } catch (error) {
       if (axios.isCancel(error)) {
         console.error("Request canceled", error.message);
@@ -291,7 +293,7 @@ export const forgotPassword = async (data, navigate) => {
       }
     } 
   
-    return response;
+    
   };
 
   export const pushlishPost=async(formData)=>{
@@ -315,4 +317,23 @@ export const forgotPassword = async (data, navigate) => {
       console.log(error)
       
     }
+  }
+
+  export const handleLikePost=async({post_id,isAlreadyLike})=>{
+    try {
+       await axios.post(
+        `${BASE_URL}/api/post/like`,{
+          post_id,isAlreadyLike
+        },
+        {
+          withCredentials: true,
+          
+        }
+      );
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+
   }

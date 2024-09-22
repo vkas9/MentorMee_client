@@ -4,12 +4,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { postAction } from '../../../redux/postStore';
 import EmptyLikedMessage from './EmptyLikedMessage';
+import { handleLikeClick } from '../../../../utils/likeHandler';
+import { fetchPosts } from '../../../../utils/fetchPosts';
 
 const LikedPosts = () => {
-
+  
  const{token,userCredentials}= useSelector((store)=>store.credential);
+
  const navigate=useNavigate()
  const dispatch=useDispatch()
+
+
+
  useEffect(() => {
   if (!token) {
     dispatch(postAction.setCurrentTab(null));
@@ -18,6 +24,25 @@ const LikedPosts = () => {
 }, [token, navigate]); 
 if (!token) return null
 const { allPost, pageReloaded } = useSelector((store) => store.postStore);
+useEffect(() => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+
+  const loadPosts = async () => {
+    await fetchPosts(dispatch, signal, pageReloaded, allPost, postAction);
+    
+  };
+
+  loadPosts();
+
+  // Cleanup to abort fetch
+  return () => {
+    controller.abort();
+  };
+}, [dispatch,pageReloaded]);
+
+
 
 const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredentials._id));
 
@@ -31,13 +56,14 @@ filterLikedPost?.length?
 [...filterLikedPost].reverse().map((post, index) => (
   <Post
   
-  key={index}
+  key={post._id}
   author={post.ownerDetails}          
   content={post.post_context}   
   image={post.post_image}      
   likesCount={post.likes}      
   comments={post.comments}      
   postTime={post.createdAt}
+  onLikeClick={() => handleLikeClick(post,allPost, userCredentials, dispatch)}
   />
 ))
 :
