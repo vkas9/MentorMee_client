@@ -18,6 +18,7 @@ const [loading,setLoading]=useState(false)
 
   const dispatch=useDispatch()
   const navigate=useNavigate()
+  
 
   const handleSelect = async(section) => {
     if(closeDrawer)closeDrawer()
@@ -30,23 +31,27 @@ const [loading,setLoading]=useState(false)
     if(section==="Log out"){
       await dispatch(logout(navigate))
     }
-    if(section==="Make Post"){
+    if(token&& section==="Make Post"){
       dispatch(postAction.setIsModalOpen(!isModalOpen))
      
+    }
+    else{
+      navigate("/login")
+
     }
     
 
     
   };
   
-const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredentials._id));
+const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredentials?._id));
 
 
 
 
 
   return (
-    <div className="w-64 h-full flex flex-col font-semibold text-md  justify-between sm:bg-gradient-to-r from-blue-500/10 to-transparent text-white">
+    <div className="w-64 h-full flex flex-col font-semibold text-md  justify-between sm:bg-white/10  text-white">
       <div className="p-2">
         
         <ul>
@@ -56,7 +61,7 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
           >
             <div className='flex items-center justify-between'>
               <span>All Posts</span>
-              <span className='text-white/40'>{allPost.length}</span>
+              <span className='text-white/40'>{allPost?.length}</span>
             </div>
           </li>
           <li
@@ -65,7 +70,7 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
           >
             <div className='flex items-center justify-between'>
               <span>My Posts</span>
-              <span className='text-white/40'>{userCredentials.posts.length}</span>
+              <span className='text-white/40'>{userCredentials?.posts.length}</span>
             </div>
             
           </li>
@@ -75,7 +80,7 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
           >
             <div className='flex items-center justify-between'>
               <span>Liked Posts</span>
-              <span className='text-white/40'>{filterLikedPost.length}</span>
+              <span className='text-white/40'>{filterLikedPost?.length}</span>
             </div>
            
           </li>
