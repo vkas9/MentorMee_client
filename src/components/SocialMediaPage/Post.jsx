@@ -10,6 +10,7 @@ const Post = ({
   author, 
   content ,  
   image, 
+  profileImage,
   likesCount, 
   comments, 
   postTime = Date.now(),
@@ -24,9 +25,7 @@ const Post = ({
   const [liked, setLiked] = useState(likesCount.includes(userCredentials?._id));
   const [showFullContent, setShowFullContent] = useState(false); 
 
-  const charLimit = 150; // Character limit for truncated content
-
-  // Toggle Like/Unlike
+  const charLimit = 150; 
   const handleLike = () => {
     onLikeClick()
     if (liked) {
@@ -44,7 +43,9 @@ const Post = ({
     e.preventDefault();
     if (commentText.trim()) {
       setCommentList([...commentList, commentText]);
-      setCommentText(''); // Clear input field after submitting
+
+      
+      setCommentText('');
     }
   };
 
@@ -63,15 +64,15 @@ const Post = ({
       <div className="flex items-center mb-4">
       <div className="rounded-full h-10 w-10 ">
       <img
-        src={`https://api.dicebear.com/8.x/pixel-art/svg?seed=${author}`}
-        alt=""
-        className=" h-10 w-10  object-cover rounded-full"
+        src={profileImage}
+        alt={profileImage}
+        className=" h-10 w-10 select-none  pointer-events-none object-cover rounded-full"
       />
     </div>
         
         <div className="ml-3">
           <p className="font-bold capitalize">{author}</p>
-          <p className="text-sm">{moment(postTime).fromNow()}</p> {/* Relative post time */}
+          <p className="text-sm">{moment(postTime).fromNow()}</p> 
         </div>
       </div>
 

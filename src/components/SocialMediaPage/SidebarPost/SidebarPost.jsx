@@ -100,7 +100,12 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
       {token&&<div className="p-2">
         
         <ul>
-          
+        <li
+            className={`p-3 mb-2 max-sm:text-center cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'My Profile' ? 'bg-white/10' : ''}`}
+            onClick={() => handleSelect('My Profile')}
+          >
+            My Profile
+          </li>
           <li
             className={`p-3 mb-2 max-sm:text-center cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'Setting' ? 'bg-white/10' : ''}`}
             onClick={() => handleSelect('Setting')}
@@ -113,6 +118,7 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
           >
             Log Out
           </li>
+          
         </ul>
       </div>}
       

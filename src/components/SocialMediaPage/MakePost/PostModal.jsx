@@ -22,7 +22,10 @@ const PostModal = () => {
               post_context:post.text,
               likes:[],
               comments:[],
-              post_image:post.imageUrl
+              post_image:post.imageUrl,
+              profileDetail:{
+                user_profile_image:post.imageUrl
+              }
           }];
           
           const formData = new FormData();
@@ -34,6 +37,9 @@ const PostModal = () => {
             post_context:response.postDetail.post_context,
             likes:response.postDetail.post_context,
             comments:response.postDetail.comments,
+            profileDetail:{
+              user_profile_image:post.imageUrl
+            },
             post_image:response.postDetail.post_image,
             createdAt:response.postDetail.createdAt
         },...userCredentials.posts]}

@@ -67,8 +67,8 @@ const VerifyEmail = () => {
       
       className="flex flex-col min-h-[calc(100vh-(69px))] items-center justify-center"
     >
-      <h1 className=" text-[2.1rem] vm:text-[2.3rem] oi:text-[2.7rem] px-1 overflow-hidden  md:text-[4em] -mt-[8rem] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
-      Enter verification code
+      <h1 className=" text-[2.1rem] vm:text-[2.3rem] oi:text-[2.7rem] px-1 overflow-hidden  md:text-[4em] -mt-[8rem] bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500  bg-clip-text text-transparent font-bold text-center">
+      Enter Verification Code
       </h1>
       <div
         className="flex justify-center flex-wrap   px-2 relative gap-2 md:gap-4"
@@ -120,7 +120,7 @@ const VerifyEmail = () => {
          
         }}
         disabled={loading}
-        className={`sm:text-md mt-10 px-[30px] md:px-[50px] py-[6px] text-2xl  transition-all outline-none duration-200 rounded-md bg-yellow-500 active:bg-yellow-600 sm:hover:bg-yellow-600 text-yellow-950 font-bold uppercase ${
+        className={`sm:text-md mt-10 px-[30px] md:px-[50px] py-[6px] text-2xl  transition-all outline-none duration-200 rounded-md bg-blue-600 active:bg-blue-700 sm:hover:bg-blue-700 text-white font-bold uppercase ${
           loading ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >

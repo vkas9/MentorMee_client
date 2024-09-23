@@ -47,7 +47,7 @@ const Login = () => {
         <Form  className="absolute top-[15%] ">
           
           <div className="w-screen xs:w-full p-6 flex sm:items-center  justify-center flex-col gap-2 xs:gap-5">
-          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 bg-clip-text text-transparent font-bold text-center">
+          <h1 className="text-[2.5rem]  mx-2 md:text-[4em] bg-gradient-to-r  from-purple-500 via-violet-500 to-pink-500 bg-clip-text text-transparent font-bold text-center">
        Log in to MentorMee
       </h1>
               
@@ -94,9 +94,9 @@ const Login = () => {
             <button
               disabled={loading}
               type="submit"
-              className={`bg-yellow-500 hover:bg-yellow-600 text-yellow-950 w-full sm:w-[20rem] transition-all duration-150 font-bold text-2xl ${
+              className={`bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-[20rem] transition-all duration-150 font-bold text-2xl ${
                 loading ? "opacity-50 cursor-not-allowed" : ""
-              }  active:bg-yellow-600 p-2 rounded-md mt-3  `}
+              }  active:bg-blue-700 p-2 rounded-md mt-3  `}
             >
               {loading ? "logging... " : "Login"}
             </button>

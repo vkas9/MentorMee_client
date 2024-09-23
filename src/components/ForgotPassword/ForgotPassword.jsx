@@ -35,7 +35,7 @@ const ForgotPassword = () => {
      
       className="min-h-[calc(100vh-(69px))]  relative flex flex-col overflow-x-hidden items-center justify-center w-full mx-auto"
     >
-      <h1 className="text-[2.1rem] vm:text-[2.3rem] oi:text-[2.7rem] overflow-hidden  md:text-[4em] -mt-[8rem] bg-gradient-to-r from-red-500 via-purple-400 to-blue-500 max-w-fit bg-clip-text text-transparent font-bold text-center">
+      <h1 className="text-[2.1rem] vm:text-[2.3rem] oi:text-[2.7rem] overflow-hidden  md:text-[4em] -mt-[8rem] bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 max-w-fit bg-clip-text text-transparent font-bold text-center">
         Reset your password
       </h1>
       <div>
@@ -55,9 +55,9 @@ const ForgotPassword = () => {
             </div>
             <button
               disabled={loading}
-              className={`bg-yellow-500 active:bg-yellow-600 sm:hover:bg-yellow-600 text-yellow-950   transition-all duration-150 w-full font-bold text-2xl ${
+              className={`bg-blue-600 active:bg-blue-700 sm:hover:bg-blue-700 text-white   transition-all duration-150 w-full font-bold text-2xl ${
                 loading ? "opacity-50 cursor-not-allowed" : " "
-              } active:bg-yellow-600 p-2 rounded-md mt-3  `}
+              } active:bg-blue-700 p-2 rounded-md mt-3  `}
               type="submit"
             >
               {loading ? "Sending..." : "Send OTP via Email"}

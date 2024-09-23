@@ -51,7 +51,8 @@ const MyPost = () => {
             key={post._id}
             author={post.ownerDetails}      
             content={post.post_context}
-            image={post.post_image}      
+            image={post.post_image}    
+            profileImage={userCredentials?.profile?.user_profile_image}   
             likesCount={post.likes}      
             comments={post.comments}      
             postTime={post.createdAt}

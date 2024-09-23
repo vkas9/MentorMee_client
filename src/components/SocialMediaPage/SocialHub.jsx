@@ -6,6 +6,7 @@ import AllPost from './AllPost/AllPost';
 import LikedPosts from './LikedPosts/LikedPosts';
 import Settings from './Settings/Settings';
 import MyPost from './MyPosts/MyPost';
+import MyProfile from '../MyProfile/MyProfile';
 
 const SocialHub = () => {
 
@@ -18,11 +19,12 @@ const SocialHub = () => {
         return <MyPost />;
       case 'Liked Posts':
         return <LikedPosts />;
-    
+        case 'My Profile':
+          return <MyProfile />;
       case 'Setting':
         return <Settings />;
       default:
-        return <AllPost/>; // Default to All Posts if no match
+        return <AllPost/>;
     }
   }
 

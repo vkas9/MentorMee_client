@@ -11,7 +11,6 @@ const AllPost = () => {
   const { allPost, pageReloaded } = useSelector((store) => store.postStore);
   const { userCredentials } = useSelector((store) => store.credential);
   const [loading, setLoading] = useState(false); 
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,7 +48,8 @@ const AllPost = () => {
               
               author={post.ownerDetails}          
               content={post.post_context}   
-              image={post.post_image}      
+              image={post.post_image}
+              profileImage={post?.profileDetail?.user_profile_image}      
               likesCount={post.likes}      
               comments={post.comments}      
               postTime={post.createdAt}

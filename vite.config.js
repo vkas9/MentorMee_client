@@ -4,6 +4,9 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    include: ["framer-motion"]
+  },
   plugins: [react()],
   resolve: {
     alias: {

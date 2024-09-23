@@ -33,7 +33,8 @@ export const signup = (data, navigate) => {
             dispatch(credentialAction.setToken(response.data.token))
             dispatch(credentialAction.setCredential(response.data.userDetail))
 
-        
+            localStorage.setItem("active-tab", JSON.stringify({ current: "All Posts" }));
+            dispatch(postAction.setActiveTab("All Posts"))
        
   
             localStorage.setItem(
@@ -86,6 +87,8 @@ export const login = (data, navigate) => {
           dispatch(credentialAction.setCredential(response.data.userDetail))
 
       
+          localStorage.setItem("active-tab", JSON.stringify({ current: "All Posts" }));
+          dispatch(postAction.setActiveTab("All Posts"))
      
 
           localStorage.setItem(
@@ -337,3 +340,52 @@ export const forgotPassword = async (data, navigate) => {
     }
 
   }
+
+
+  export const updateDisplayProfile = async ( data) => {
+    if (!navigator.onLine) {
+      toast.error("No internet connection");
+      throw new Error("No internet connection");
+    }
+
+    try {
+     const response=await axios.post(
+        `${BASE_URL}/api/auth/updateprofilepicture`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
+      
+    } catch (error) {
+      toast.error(error.message);
+    } 
+  };
+
+
+  export const updateProfileDetails = async (dispatch, data) => {
+    if (!navigator.onLine) {
+      toast.error("No internet connection");
+      throw new Error("No internet connection");
+    }
+    
+    try {
+      await axios.post(
+        `${BASE_URL}/api/auth/updateprofiledetails`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      const updatedUserCredential={
+        
+      }
+      toast.success("Details Saved");
+    } catch (error) {
+      console.log(error);
+    } 
+  };
+
+
+
