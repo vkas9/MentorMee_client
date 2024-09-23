@@ -24,7 +24,7 @@ const PostModal = () => {
               comments:[],
               post_image:post.imageUrl,
               profileDetail:{
-                user_profile_image:post.imageUrl
+                user_profile_image:userCredentials?.profile?.user_profile_image
               }
           }];
           
