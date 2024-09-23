@@ -19,7 +19,6 @@ const Settings = () => {
   const dispatch = useDispatch();
   const [showToast, isShowToast] = useState(false);
   const handleSubmit = async (values, { resetForm }) => {
-    console.log("values",values)
     if (
       
       values.contactNumber == "" &&

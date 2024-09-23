@@ -34,7 +34,6 @@ if (!token) return null
   };
 
   const handleSubmit = () => {
-    console.log(text,image)
     const imageUrl = image ? URL.createObjectURL(image) : null;
     onPublish({ text, imageUrl,file:image });
     setText('');

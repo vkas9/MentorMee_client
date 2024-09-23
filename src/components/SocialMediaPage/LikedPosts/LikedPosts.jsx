@@ -65,6 +65,7 @@ filterLikedPost?.length?
   comments={post.comments}      
   postTime={post.createdAt}
   onLikeClick={() => handleLikeClick(post,allPost, userCredentials, dispatch)}
+  postId={post._id}
   />
 ))
 :

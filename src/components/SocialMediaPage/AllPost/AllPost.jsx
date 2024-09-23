@@ -50,9 +50,10 @@ const AllPost = () => {
               image={post.post_image}
               profileImage={post?.profileDetail?.user_profile_image}      
               likesCount={post.likes}      
-              comments={post.comments}      
+              comments={post?.comments}      
               postTime={post.createdAt}
               onLikeClick={() => handleLikeClick(post,allPost, userCredentials, dispatch)}
+              postId={post._id}
             
             />
           ))

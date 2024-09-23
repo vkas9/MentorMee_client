@@ -33,7 +33,9 @@ const PostModal = () => {
           formData.append('post_image', post.file);
           formData.append('post_context', post.text);
           const response=await pushlishPost(formData);
-          const newCredential={...userCredentials,posts:[{
+  
+          const newCredential={...userCredentials,posts:[...userCredentials.posts,{
+            _id:response?.postDetail?._id,
             ownerDetails:response.postDetail.ownerDetails,
             post_context:response.postDetail.post_context,
             likes:response.postDetail.post_context,
@@ -43,7 +45,7 @@ const PostModal = () => {
             },
             post_image:response.postDetail.post_image,
             createdAt:response.postDetail.createdAt
-        },...userCredentials.posts]}
+        }]}
         
           dispatch(credentialAction.setCredential(newCredential))
           dispatch(postAction.setPageReloaded(true));
@@ -53,7 +55,7 @@ const PostModal = () => {
             JSON.stringify(newCredential)
           );
           
-          
+          localStorage.setItem("active-tab", JSON.stringify({ current: "All Posts" }));
           dispatch(postAction.setActiveTab("All Posts"))
          dispatch(postAction.setIsModalOpen(!isModalOpen))
         } catch (error) {

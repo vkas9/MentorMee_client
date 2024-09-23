@@ -285,7 +285,6 @@ export const forgotPassword = async (data, navigate) => {
           signal: signal,
         }
       );
-     
       return res;
       
     } catch (error) {
@@ -389,3 +388,32 @@ export const forgotPassword = async (data, navigate) => {
 
 
 
+  export const addComment = async ({comment,postId}) => {
+    if (!navigator.onLine) {
+      toast.error("No internet connection");
+      throw new Error("No internet connection");
+    }
+   
+  
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/api/post/comments`,{
+          comment,
+          postId
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      return res;
+      
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        console.error("Request canceled", error.message);
+      } else {
+        console.error("Error fetching course details", error);
+      }
+    } 
+  
+    
+  };

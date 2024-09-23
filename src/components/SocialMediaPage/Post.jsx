@@ -3,8 +3,9 @@ import moment from 'moment'; // Use moment.js for relative post time
 import { IoShareSocialSharp } from "react-icons/io5";
 import { FaComment } from "react-icons/fa6";
 import { FaCommentSlash } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaHeart } from "react-icons/fa";
+import { commentHandler } from '../../../utils/commentHandler';
 
 const Post = ({ 
   author, 
@@ -14,13 +15,16 @@ const Post = ({
   likesCount, 
   comments, 
   postTime = Date.now(),
-  onLikeClick
+  onLikeClick,
+  postId
 }) => {
 
  const{userCredentials}= useSelector(store=>store.credential)
+ 
+ const {allPost}= useSelector(store=>store.postStore)
   const [likes, setLikes] = useState(likesCount?.length);
   const [commentText, setCommentText] = useState('');
-  const [commentList, setCommentList] = useState(comments);
+  const [commentList, setCommentList] = useState(comments||[]);
   const [showComments, setShowComments] = useState(true);
   const [liked, setLiked] = useState(likesCount.includes(userCredentials?._id));
   const [showFullContent, setShowFullContent] = useState(false); 
@@ -37,12 +41,14 @@ const Post = ({
     }
     setLiked(!liked);
   };
-
+const dispatch=useDispatch()
   
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async(e) => {
     e.preventDefault();
     if (commentText.trim()) {
-      setCommentList([...commentList, commentText]);
+      const newComment = { text: commentText, commentedUser: userCredentials._id };
+      setCommentList([...commentList, newComment]);
+     await  commentHandler(commentText,postId,allPost,dispatch,userCredentials)
 
       
       setCommentText('');
@@ -139,7 +145,7 @@ const Post = ({
             {commentList.length > 0 ? (
               [...commentList].reverse().map((comment, index) => (
                 <p key={index} className="mb-2">
-                  {comment}
+                  {comment?.text}
                 </p>
               ))
             ) : (
