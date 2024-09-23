@@ -1,14 +1,15 @@
 import { postAction } from '@/redux/postStore'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CreatePost from './CreatePost'
 import { credentialAction } from '@/redux/credentials'
 import { pushlishPost } from '@/APIs/api'
 import { v4 as uuidv4 } from 'uuid';
+import { fetchPosts } from '../../../../utils/fetchPosts'
 const PostModal = () => {
     const [loading,setLoading]=useState(false)
     const dispatch=useDispatch();
-    const {allPost,isModalOpen}= useSelector((store)=>store.postStore);
+    const {allPost,isModalOpen,pageReloaded}= useSelector((store)=>store.postStore);
     const{userCredentials}= useSelector(store=>store.credential)
     const authorName=userCredentials?.first_name+" "+userCredentials?.last_name
     const handlePublish = async(post) => {
@@ -43,8 +44,9 @@ const PostModal = () => {
             post_image:response.postDetail.post_image,
             createdAt:response.postDetail.createdAt
         },...userCredentials.posts]}
+        
           dispatch(credentialAction.setCredential(newCredential))
-          
+          dispatch(postAction.setPageReloaded(true));
           dispatch(postAction.setAllPost(newAllPost))
           localStorage.setItem(
             import.meta.env.VITE_USER,

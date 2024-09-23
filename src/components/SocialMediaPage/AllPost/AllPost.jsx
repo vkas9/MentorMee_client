@@ -12,7 +12,6 @@ const AllPost = () => {
   const { userCredentials } = useSelector((store) => store.credential);
   const [loading, setLoading] = useState(false); 
   const dispatch = useDispatch();
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -29,7 +28,7 @@ const AllPost = () => {
     return () => {
       controller.abort();
     };
-  }, [dispatch,pageReloaded]);
+  }, [dispatch,pageReloaded,userCredentials?.posts?.length]);
 
 
   
