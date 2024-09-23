@@ -68,7 +68,7 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
             className={`p-3 mb-2 max-sm:text-center cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'My Posts' ? 'bg-white/10' : ''}`}
             onClick={() => handleSelect('My Posts')}
           >
-            <div className='flex items-center justify-between'>
+            <div className={`flex items-center justify-between ${!token&&"text-white/50"} `}>
               <span>My Posts</span>
               <span className='text-white/40'>{userCredentials?.posts.length}</span>
             </div>
@@ -78,14 +78,14 @@ const filterLikedPost=allPost?.filter((item)=>item?.likes?.includes(userCredenti
             className={`p-3 mb-2 max-sm:text-center cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'Liked Posts' ? 'bg-white/10' : ''}`}
             onClick={() => handleSelect('Liked Posts')}
           >
-            <div className='flex items-center justify-between'>
+            <div className={`flex items-center justify-between ${!token&&"text-white/50"} `}>
               <span>Liked Posts</span>
-              <span className='text-white/40'>{filterLikedPost?.length}</span>
+              <span className={`text-white/40 ${!token&&"hidden"}`}>{filterLikedPost?.length}</span>
             </div>
            
           </li>
           <li
-            className={`p-3 mb-2 max-sm:text-center cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'Make Post' ? 'bg-white/10' : ''}`}
+            className={`p-3 mb-2 max-sm:text-center ${!token&&"text-white/50"} cursor-pointer hover:bg-white/10 rounded-lg ${activeTab === 'Make Post' ? 'bg-white/10' : ''}`}
             onClick={() => handleSelect('Make Post')}
           >
             

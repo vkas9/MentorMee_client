@@ -6,6 +6,8 @@ import { FaCommentSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { FaHeart } from "react-icons/fa";
 import { commentHandler } from '../../../utils/commentHandler';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Post = ({ 
   author, 
@@ -19,7 +21,7 @@ const Post = ({
   postId
 }) => {
 
- const{userCredentials}= useSelector(store=>store.credential)
+ const{userCredentials,token}= useSelector(store=>store.credential)
  
  const {allPost}= useSelector(store=>store.postStore)
   const [likes, setLikes] = useState(likesCount?.length);
@@ -28,9 +30,13 @@ const Post = ({
   const [showComments, setShowComments] = useState(true);
   const [liked, setLiked] = useState(likesCount.includes(userCredentials?._id));
   const [showFullContent, setShowFullContent] = useState(false); 
-
   const charLimit = 150; 
   const handleLike = () => {
+    if(!token){
+      toast.error("Must be Logged in")
+      
+      return
+    }
     onLikeClick()
     if (liked) {
      
@@ -45,6 +51,10 @@ const dispatch=useDispatch()
   
   const handleCommentSubmit = async(e) => {
     e.preventDefault();
+    if(!token){
+      toast.error("Must be Logged in")
+      return
+    }
     if (commentText.trim()) {
       const newComment = { text: commentText, commentedUser: userCredentials._id };
       setCommentList([...commentList, newComment]);
