@@ -32,7 +32,7 @@ const HeroSection = () => {
             Log In
           </Link>
         </div>:
-        <Link  to={"/social-hub"} onClick={handleClick} className="px-6 py-2 font-semibold bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700">Go to Social Hub</Link>
+        <Link  to={"/social-hub"} onClick={handleClick} className="px-6 py-2 font-bold bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700">Go to Social Hub</Link>
         
 
         }
