@@ -35,9 +35,11 @@ const [loading,setLoading]=useState(false)
       dispatch(postAction.setIsModalOpen(!isModalOpen))
      
     }
-    else{
-      navigate("/login")
+    else if(section=="All Posts"){
+      navigate("/social-hub")
 
+    }else {
+      navigate("/login")
     }
     
 
